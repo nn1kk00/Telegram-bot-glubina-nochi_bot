@@ -125,7 +125,7 @@ def message(message):
                     api.send_message(message.from_user.id, f"❌ Вы не подписались на все тгк!\n\nПодпишитесь на:\n{l}\nПосле чего нажмите на кнопку ниже 'Проверить подписку'.", reply_markup=markup)
                 pass
             else:
-                if message.text in ["🗒 Перезапуск бота", "🖥 Команды", "/tgkon", "/tgkoff", "/ban", "/unban", "/say", "/send"] and message.from_user.id in acc["admin"]: pass
+                if message.text in ["🗒 Перезапуск бота", "🖥 Команды"] or message.text.split(" ")[0] in ["/tgkon", "/tgkoff", "/ban", "/unban", "/say", "/send"] and message.from_user.id in acc["admin"]: pass
                 else: api.send_message(message.from_user.id, "❌ Неизвестная команда!")
     except Exception as e:
         api.send_message(1959168915, f"Произошла ошибка в коде.\n\nError: {e}\nMessage: {message.text}")
