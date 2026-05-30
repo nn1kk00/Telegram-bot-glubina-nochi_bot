@@ -92,7 +92,7 @@ def message(message):
                         time.sleep(0.5)
                         api.send_message(message.from_user.id, "Готово!")
                     elif message.text == "🖥 Команды":
-                        api.send_message(message.from_user.id, "Команды:\n\n/say {текст} - отправка сообщения всем кто активировал бота\n/ban {id} - пермач (бан на всегда) для юзера\n/unban {id} - снять блокировку\n/tgkon @{юзернейм тгк} - добавить тгк в обязательные подписки\n/tgkoff @{юзернейм тгк} - убрать тгк из обязательных подписок\n/send \"{id}\" \"{текст}\" - отправить сообщение пользователю по id")
+                        api.send_message(message.from_user.id, "Команды:\n\n/say {текст} - отправка сообщения всем кто активировал бота\n/ban {id} - пермач (бан навсегда) для юзера\n/unban {id} - снять блокировку\n/tgkon @{юзернейм тгк} - добавить тгк в обязательные подписки\n/tgkoff @{юзернейм тгк} - убрать тгк из обязательных подписок\n/send \"{id}\" \"{текст}\" - отправить сообщение пользователю по id")
                     else: api.send_message(message.from_user.id, "❌ Неизвестная команда!")
             if message.text == "/start" or message.text.split(" ")[0] == "/start":
                 if message.from_user.id not in acc["users"]:
