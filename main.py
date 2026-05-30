@@ -1,4 +1,4 @@
-import telebot, json, os, time, datetime, sys
+import telebot, json, os, time, datetime
 from telebot import types, apihelper
 
 PROXY_URL = "Прокси тоже не дам"
@@ -87,7 +87,10 @@ def message(message):
                     if message.text == "✅ Проверить подписку" or message.text == "/start": pass
                     elif message.text == "🗒 Перезапуск бота":
                         api.send_message(message.from_user.id, "✅ Бот перезапускается...")
-                        os.execv(__file__, ['python'] + sys.argv)
+                        with open("assets/acc.json", "r", encoding='utf-8') as f: acc = json.load(f)
+                        with open("assets/index.json", "r", encoding='utf-8') as f: data = json.load(f)
+                        time.sleep(0.5)
+                        api.send_message(message.from_user.id, "Готово!")
                     elif message.text == "🖥 Команды":
                         api.send_message(message.from_user.id, "Команды:\n\n/say {текст} - отправка сообщения всем кто активировал бота\n/ban {id} - пермач (бан на всегда) для юзера\n/unban {id} - снять блокировку\n/tgkon @{юзернейм тгк} - добавить тгк в обязательные подписки\n/tgkoff @{юзернейм тгк} - убрать тгк из обязательных подписок\n/send \"{id}\" \"{текст}\" - отправить сообщение пользователю по id")
                     else: api.send_message(message.from_user.id, "❌ Неизвестная команда!")
