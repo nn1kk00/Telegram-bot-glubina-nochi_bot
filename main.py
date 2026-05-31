@@ -142,6 +142,9 @@ def req_join(message):
             if temp.status != "left": pass
             else: tgk = 1
         if tgk == 0:
+            if message.from_user.id in acc["banned"]:
+                api.decline_chat_join_request(message.chat.id, message.from_user.id)
+                pass
             api.approve_chat_join_request(message.chat.id, message.from_user.id)
             time.sleep(1)
             if message.from_user.username == None:
