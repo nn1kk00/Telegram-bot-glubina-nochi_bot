@@ -100,10 +100,9 @@ def message(message):
                     with open("assets/acc.json", "w", encoding="utf-8") as f:
                         json.dump(acc, f)
                         f.close()
-                    a = f", @{message.from_user.username}"
-                else:
-                    a = f", @{message.from_user.username}"
-                api.send_message(message.from_user.id, f"👋 Приветствую{a}!\n\nДанный бот предназначен для пропуска в чат Алисы.\nПрежде чем заходить, подпишитесь на <a href='https://sozvezdie_lisy.t.me/'>данный канал</a>, позже нажмите кнопку ниже.", reply_markup=main_menu(message=message), parse_mode="HTML")
+                if message.from_user.username == None: a = ""
+                else: a = f", @{message.from_user.username}"
+                with open("image.jpg", "rb") as f: api.send_photo(chat_id=message.from_user.id, photo=f, caption=f"👋 Привет{a}! Я бот из  лисьего созвездия 🦊✨\n\nЧерез этого бота ты можешь получить доступ к чату подписчиков.\nПрежде чем заходить, подпишись на <a href='https://sozvezdie_lisy.t.me/'>этот канал</a>, и потом нажми кнопку внизу 💜", reply_markup=main_menu(message=message), parse_mode="HTML")
             elif message.text == "✅ Проверить подписку":
                 markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
                 api.send_message(message.from_user.id, "⚙ Проверка подписки на обязательные тгк...", reply_markup=markup)
